@@ -31,53 +31,36 @@
 </header>
 
 <!-- ===== PRODUCT CARD ===== -->
-<section class="wrap reveal" style="padding: 80px 0;">
+<section class="wrap reveal">
   <p class="eyebrow">Shop</p>
   <h2 class="capstone-title">Custom 3D Printed Tape Dispenser</h2>
-  
-  <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-top: 40px; align-items: start;">
-    
-<!-- Left: Product Image -->
-    <div style="background: var(--slate); border: 1px solid var(--hairline); border-radius: 6px; padding: 18px; display: flex; align-items: center; justify-content: center;">
-      <img src="images/Tape_Dispenser_Images/orange.jpeg" alt="3D printed tape dispenser" style="width:100%; max-height:500px; border-radius:4px; object-fit:contain;">
-    </div>
-    
-    <!-- Right: Product Details -->
-    <div>
-      <p style="font-family: var(--mono); font-size: 12px; color: var(--moss); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px;">
-        In stock · made to order
-      </p>
-      <h3 style="font-size: 22px; margin: 0 0 12px;">Custom Tape Dispenser</h3>
-      <p style="color: var(--mist); font-size: 15px; margin: 0 0 20px;">
-        Designed and 3D printed in-house. A durable, custom-fit tape dispenser with a magnetic base for one-handed operation.
-      </p>
-      
-      <!-- Specs -->
-      <ul style="list-style: none; padding: 0; margin: 0 0 24px; border: 1px solid var(--hairline); border-radius: 4px; overflow: hidden;">
-        <li style="display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--hairline); font-size: 14px;">
-          <span style="color: var(--mist);">Material</span>
-          <span style="color: var(--paper); font-weight: 500;">PLA / PETG</span>
-        </li>
-        <li style="display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--hairline); font-size: 14px;">
-          <span style="color: var(--mist);">Colors available</span>
-          <span style="color: var(--paper); font-weight: 500;">Matte Black, Marble, Forest Green, Pastel Pink, Burgundy, Hunter Orange, Midnight Green with Gold Sparkles</span>
-        </li>
-        <li style="display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--hairline); font-size: 14px;">
-          <span style="color: var(--mist);">Lead time</span>
-          <span style="color: var(--paper); font-weight: 500;">10 to 14 business days</span>
-        </li>
-        <li style="display: flex; justify-content: space-between; padding: 10px 16px; font-size: 14px;">
-          <span style="color: var(--mist);">Price</span>
-          <span style="color: var(--amber); font-weight: 600; font-size: 18px;">$35.00 CAD</span>
-        </li>
-      </ul>
-      
-      <!-- Buttons -->
-      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeS4151pnsRxhZR2ghLxA8NhlOHr9m2BDhYVG3Duk2QzcYRRw/viewform?embedded=true" target="_blank">Order Now ↗</a>
+
+  <div class="product-card">
+
+    <div class="product-media">
+      <div class="img-slot" style="border:none;">
+        <img src="images/Tape_Dispenser_Images/orange.jpeg" alt="Custom 3D printed tape dispenser in hunter orange" style="width:100%; height:100%; object-fit:cover; border-radius:0;">
       </div>
     </div>
-    
+
+    <div class="product-copy">
+      <p class="eyebrow" style="margin-bottom:8px;">In stock · made to order</p>
+      <h3>Custom Tape Dispenser</h3>
+      <p>Designed and 3D printed in-house. A durable, custom-fit tape dispenser with a magnetic base for one-handed operation.</p>
+
+      <ul class="product-spec-list">
+        <li><span>Material</span><span>PLA / PETG</span></li>
+        <li><span>Colors available</span><span>Matte Black, Marble, Forest Green, Pastel Pink, Burgundy, Hunter Orange, Midnight Green w/ Gold Sparkle</span></li>
+        <li><span>Lead time</span><span>10–14 business days</span></li>
+        <li><span>Price</span><span style="color: var(--amber); font-size: 15px; font-weight: 600;">$35.00 CAD</span></li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeS4151pnsRxhZR2ghLxA8NhlOHr9m2BDhYVG3Duk2QzcYRRw/viewform?embedded=true" target="_blank" rel="noopener">Order Now ↗</a>
+        <a class="btn btn-ghost" href="tape-dispenser-photos.html">View Photos</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -92,44 +75,48 @@
   <div class="print-grid">
 
     <article class="print-card">
-      <div class="img-slot">[ Project photo ]</div>
-      <h3>[Heat Set Press]</h3>
-      <p>[One sentence: what it does or what problem it solves.]</p>
+      <div class="img-slot" style="border:none; padding:0;">
+        <img src="images/Heat_Press_Images/Heat_Press.jpeg" alt="Heat set press project photo" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+      </div>
+      <h3>Heat Set Press</h3>
+      <p>Allows for precise heat setting of components during assembly.</p>
+      <div class="tool-tags">
+        <span class="tag">Fusion 360</span>
+        <span class="tag">PETG-CF</span>
+      </div>
+      <div class="print-links">
+        <a href="heat-press-photos.html">View photos</a>
+        <a href="#">CAD files</a>
+      </div>
+    </article>
+
+    <article class="print-card">
+      <div class="img-slot" style="border:none; padding:0;">
+        <img src="images/Marker_Images/single_sharpie.jpeg" alt="Magnetic sharpie holder project photo" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+      </div>
+      <h3>Magnetic Sharpie Holder</h3>
+      <p>Holds a sharpie magnetically, making it easy to access and use.</p>
+      <div class="tool-tags">
+        <span class="tag">Fusion 360</span>
+        <span class="tag">PETG</span>
+      </div>
+      <div class="print-links">
+        <a href="marker-photos.html">View photos</a>
+      </div>
+    </article>
+
+    <article class="print-card">
+      <div class="img-slot" style="border:none; padding:0;">
+        <img src="images/gridfinity_tools.jpg" alt="Custom Gridfinity bins project photo" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
+      </div>
+      <h3>Custom Gridfinity Bins</h3>
+      <p>Organizes and stores components in a customizable, modular system.</p>
       <div class="tool-tags">
         <span class="tag">Fusion 360</span>
         <span class="tag">PLA</span>
       </div>
       <div class="print-links">
-        <a href="[LINK]">View photos</a>
-        <a href="[LINK]">CAD files</a>
-      </div>
-    </article>
-
-    <article class="print-card">
-      <div class="img-slot">[ Project photo ]</div>
-      <h3>[Project Name]</h3>
-      <p>[One sentence: what it does or what problem it solves.]</p>
-      <div class="tool-tags">
-        <span class="tag">SolidWorks</span>
-        <span class="tag">PETG</span>
-      </div>
-      <div class="print-links">
-        <a href="[LINK]">View photos</a>
-        <a href="[LINK]">CAD files</a>
-      </div>
-    </article>
-
-    <article class="print-card">
-      <div class="img-slot">[ Project photo ]</div>
-      <h3>[Project Name]</h3>
-      <p>[One sentence: what it does or what problem it solves.]</p>
-      <div class="tool-tags">
-        <span class="tag">PrusaSlicer</span>
-        <span class="tag">TPU</span>
-      </div>
-      <div class="print-links">
-        <a href="[LINK]">View photos</a>
-        <a href="[LINK]">CAD files</a>
+        <a href="images/gridfinity_tools.jpg" target="_blank" rel="noopener">View photos</a>
       </div>
     </article>
 
@@ -139,9 +126,9 @@
 <footer class="wrap reveal">
   <div class="footer-row">
     <div class="footer-links">
-      <a href="https://drive.google.com/file/d/1xMS4_q0M0Uhkx7D0wM3EIa8_37kz9iqP/view?usp=drive_link">Resume ↗</a>
+      <a href="documents/KDF_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
       <a href="https://www.linkedin.com/in/kevin-fitzsimmons-325343297/">LinkedIn ↗</a>
-      <a href="mailto:kevin.fitzsimmons@mail.mcgill.ca">Email</a>
+      <a href="mailto:kevin.fitzsimmons@mail.mcgill.ca">Email ↗</a>
     </div>
     <p class="copyright">
       © 2026 Kevin Fitzsimmons. All rights reserved. This portfolio and its
