@@ -21,13 +21,14 @@
 <header class="nav">
   <div class="nav-inner">
     <a class="nav-name" href="index.html">Kevin Fitzsimmons</a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="capstone.html" aria-current="page">Capstone</a>
-      <a href="fieldwork.html">Fieldwork</a>
-      <a href="experience.html">Experience</a>
-      <a href="printing.html">Workshop</a>
-      <a href="contact.html">About</a>
-      <a href="documents/KDF_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="site-menu"><span class="nav-burger-lines" aria-hidden="true"></span>Menu</button>
+    <nav class="nav-links" id="site-menu" aria-label="Main">
+      <div class="nav-item"><a class="nav-top" href="capstone.html" aria-current="page">Capstone</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-capstone" aria-label="Show Capstone sections"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button><ul class="nav-menu" id="menu-capstone"><li><a href="capstone.html#main">Overview</a></li><li><a href="capstone.html#train-h">The four-stage system</a></li><li><a href="capstone.html#pbr-h">The photobioreactor build</a></li><li><a href="capstone.html#res-h">Results</a></li><li><a href="capstone.html#rep-h">Reports (PDF)</a></li><li><a href="capstone-photos.html">All build photos</a></li></ul></div>
+      <div class="nav-item"><a class="nav-top" href="fieldwork.html">Fieldwork</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-fieldwork" aria-label="Show Fieldwork sections"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button><ul class="nav-menu" id="menu-fieldwork"><li><a href="fieldwork.html#main">The project</a></li><li><a href="fieldwork.html#gap-h">Why the old data didn&rsquo;t compare</a></li><li><a href="fieldwork.html#did-h">What I did</a></li><li><a href="fieldwork.html#pap-h">Avenue Papineau</a></li><li><a href="fieldwork.html#salt-h">Salt and street trees</a></li><li><a href="fieldwork.html#take-h">Takeaways</a></li></ul></div>
+      <div class="nav-item"><a class="nav-top" href="experience.html">Experience</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-experience" aria-label="Show Experience sections"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button><ul class="nav-menu" id="menu-experience"><li><a href="experience.html#tl-h">Career at a glance</a></li><li><a href="experience.html#eng-h">Engineering and research</a></li><li><a href="experience.html#kit-h">The kitchen years</a></li><li><a href="experience.html#edu-h">Key classes</a></li><li><a href="experience.html#sk-h">Tools</a></li><li><a href="experience.html#cr-h">Honours and registration</a></li></ul></div>
+      <div class="nav-item"><a class="nav-top" href="printing.html">Workshop</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-printing" aria-label="Show Workshop sections"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button><ul class="nav-menu" id="menu-printing"><li><a href="printing.html#tape">Tape dispenser (order)</a></li><li><a href="printing.html#heat-press">Heat-set insert press</a></li><li><a href="printing.html#markers">Magnetic marker holders</a></li><li><a href="printing.html#gridfinity">Gridfinity bins</a></li></ul></div>
+      <div class="nav-item"><a class="nav-top" href="contact.html">About</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-contact" aria-label="Show About sections"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button><ul class="nav-menu" id="menu-contact"><li><a href="contact.html#main">About me</a></li><li><a href="contact.html#off-h">Off the clock</a></li><li><a href="contact.html#want-h">What I&rsquo;m looking for</a></li><li><a href="contact.html#contact">Contact details</a></li></ul></div>
+      <div class="nav-item"><a class="nav-top" href="documents/KDF_Resume.pdf" target="_blank" rel="noopener">Resume <span class="nav-pdf">PDF</span></a></div>
     </nav>
   </div>
 </header>
@@ -49,12 +50,12 @@
       </div>
       <div>
         <p class="lead">Biogas plants solve one waste problem and create another: digestate, the nutrient-heavy sludge left behind. We designed a way to turn all of it into products.</p>
-        <p class="muted" style="margin-top:24px">Our client, Biogas-ZE, digests stillage from a Kentucky whiskey distillery and wants to run with zero waste and net-zero emissions. The distillery&rsquo;s wastewater alone is roughly 70% of the local municipal plant&rsquo;s treatment capacity, so sending digestate down the drain isn&rsquo;t an option. Over two semesters our team of four designed the full treatment train, then built and ran a lab-scale photobioreactor to test its final, least-proven stage.</p>
+        <p class="muted" style="margin-top:24px">Our client, Biogas-ZE, digests stillage from a Kentucky whiskey distillery and wants to run with zero waste and net-zero emissions. The distillery&rsquo;s wastewater alone is roughly <span class="hl">70% of the local municipal plant&rsquo;s treatment capacity</span>, so sending digestate down the drain <em>isn&rsquo;t an option</em>. Over two semesters our team of four designed the full treatment train, then built and ran a lab-scale photobioreactor to test its final, least-proven stage.</p>
         <dl class="facts" style="margin-top:40px">
           <dt>Client</dt><dd>Biogas-ZE, Kentucky</dd>
           <dt>Team</dt><dd>Tristan Brunger, Kevin Fitzsimmons, Catherine Quinty, Chendan Zhang</dd>
           <dt>Supervisor</dt><dd>Dr. Grant Clark, Department of Bioresource Engineering</dd>
-          <dt>My role</dt><dd>Designed, built and experimentally validated the photobioreactor</dd>
+          <dt>My role</dt><dd><strong>Designed, built and experimentally validated the photobioreactor</strong></dd>
           <dt>Courses</dt><dd>BREE 490 (process design) and BREE 495 (prototype and experiment)</dd>
         </dl>
       </div>
@@ -166,6 +167,10 @@
             <a class="btn" href="documents/Capstone Report 2 - Biogas-ZE.pdf" target="_blank" rel="noopener">Open report 2 (PDF, 79&nbsp;MB)</a>
           </article>
         </div>
+        <div class="btn-row" style="margin-top:48px">
+          <a class="btn btn-solid" href="fieldwork.html">Next: the fieldwork</a>
+          <a class="btn" href="capstone-photos.html">All build photos</a>
+        </div>
       </div>
     </div>
   </section>
@@ -180,6 +185,7 @@
     <small>&copy; 2026 Kevin Fitzsimmons. Reports, photographs, drawings and designs on this site may not be reproduced without permission.</small>
   </div>
 </footer>
+<script src="nav.js" defer></script>
 <script src="cover.js" defer></script>
 <script src="gallery.js" defer></script>
 </body>
