@@ -1,80 +1,59 @@
-// Lightbox gallery — click a thumbnail to open, arrows/keyboard to browse.
-// Works on any page that has a .gallery-grid of <button class="gallery-thumb"><img></button> elements.
+/* Lightbox: any <button data-full="..." data-caption="..."> inside a
+   [data-lightbox] group opens full size; arrows and keys browse the group. */
 (function () {
-  const thumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
-  if (!thumbs.length) return;
+  const groups = document.querySelectorAll("[data-lightbox]");
+  if (!groups.length) return;
 
-  const images = thumbs.map((el) => ({
-    src: el.dataset.full || el.querySelector("img").src,
-    alt: el.querySelector("img").alt || "",
-  }));
+  const box = document.createElement("div");
+  box.className = "lightbox";
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "Photo viewer");
+  box.innerHTML =
+    '<button class="lb-close" aria-label="Close photo viewer">close</button>' +
+    '<button class="lb-prev" aria-label="Previous photo">&#8249;</button>' +
+    '<figure><img alt=""><figcaption></figcaption></figure>' +
+    '<button class="lb-next" aria-label="Next photo">&#8250;</button>';
+  document.body.appendChild(box);
 
-  const overlay = document.createElement("div");
-  overlay.className = "lightbox-overlay";
-  overlay.innerHTML = `
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <button class="lightbox-arrow prev" aria-label="Previous photo">&#8249;</button>
-    <div class="lightbox-figure">
-      <img alt="">
-      <span class="lightbox-counter"></span>
-    </div>
-    <button class="lightbox-arrow next" aria-label="Next photo">&#8250;</button>
-  `;
-  document.body.appendChild(overlay);
+  const img = box.querySelector("img");
+  const cap = box.querySelector("figcaption");
+  let items = [], i = 0, opener = null;
 
-  const imgEl = overlay.querySelector("img");
-  const counterEl = overlay.querySelector(".lightbox-counter");
-  const closeBtn = overlay.querySelector(".lightbox-close");
-  const prevBtn = overlay.querySelector(".prev");
-  const nextBtn = overlay.querySelector(".next");
-
-  let current = 0;
-
-  function render() {
-    const item = images[current];
-    imgEl.src = item.src;
-    imgEl.alt = item.alt;
-    counterEl.textContent = `${current + 1} / ${images.length}`;
+  function show() {
+    const el = items[i];
+    const thumb = el.querySelector("img");
+    img.src = el.dataset.full || thumb.src;
+    img.alt = thumb.alt || "";
+    cap.textContent = (el.dataset.caption || thumb.alt || "") + "   " + (i + 1) + " of " + items.length;
   }
-
-  function open(index) {
-    current = index;
-    render();
-    overlay.classList.add("is-open");
+  function open(group, index, btn) {
+    items = Array.from(group.querySelectorAll("button[data-full]"));
+    i = index; opener = btn;
+    show();
+    box.classList.add("is-open");
     document.body.style.overflow = "hidden";
+    box.querySelector(".lb-close").focus();
   }
-
   function close() {
-    overlay.classList.remove("is-open");
+    box.classList.remove("is-open");
     document.body.style.overflow = "";
+    if (opener) opener.focus();
   }
+  const step = (d) => { i = (i + d + items.length) % items.length; show(); };
 
-  function next() {
-    current = (current + 1) % images.length;
-    render();
-  }
-
-  function prev() {
-    current = (current - 1 + images.length) % images.length;
-    render();
-  }
-
-  thumbs.forEach((el, i) => {
-    el.addEventListener("click", () => open(i));
+  groups.forEach((g) => {
+    g.querySelectorAll("button[data-full]").forEach((b, idx) =>
+      b.addEventListener("click", () => open(g, idx, b)));
   });
-
-  closeBtn.addEventListener("click", close);
-  nextBtn.addEventListener("click", next);
-  prevBtn.addEventListener("click", prev);
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) close();
-  });
-
+  box.querySelector(".lb-close").addEventListener("click", close);
+  box.querySelector(".lb-prev").addEventListener("click", () => step(-1));
+  box.querySelector(".lb-next").addEventListener("click", () => step(1));
+  box.addEventListener("click", (e) => { if (e.target === box) close(); });
   document.addEventListener("keydown", (e) => {
-    if (!overlay.classList.contains("is-open")) return;
+    if (!box.classList.contains("is-open")) return;
     if (e.key === "Escape") close();
-    if (e.key === "ArrowRight") next();
-    if (e.key === "ArrowLeft") prev();
+    if (e.key === "ArrowRight") step(1);
+    if (e.key === "ArrowLeft") step(-1);
   });
 })();
