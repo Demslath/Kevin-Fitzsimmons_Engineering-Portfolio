@@ -26,6 +26,7 @@
     strip.className = "slides-thumbs";
     slides.forEach((s, k) => {
       const img = s.querySelector("img");
+      if (s.querySelector("video")) s.classList.add("has-video");
       const t = document.createElement("button");
       t.type = "button";
       t.setAttribute("aria-label", "Show image " + (k + 1) + ": " + (img.alt || ""));
@@ -45,6 +46,11 @@
         s.querySelectorAll("button").forEach((b) => (b.tabIndex = n === i ? 0 : -1));
       });
       thumbs.forEach((t, n) => t.classList.toggle("is-active", n === i));
+      slides.forEach((s, n) => {
+        const v = s.querySelector("video");
+        if (!v) return;
+        if (n === i && !reduce) { v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
+      });
       counter.textContent = (i + 1) + " / " + slides.length;
     }
     function play() {
