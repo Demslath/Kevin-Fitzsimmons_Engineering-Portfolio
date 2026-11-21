@@ -1074,23 +1074,17 @@ main > section.section:nth-of-type(odd) .split-head .sc { color: var(--slate); }
 /* one grid per section: dark sections paint their own ground so the body grid no longer shows through offset */
 main > section.section:nth-of-type(even) { background-color: var(--field); }
 
-main > section.section { background-repeat: no-repeat, no-repeat, repeat, repeat; background-size: 380px auto, 380px auto, 22px 22px, 22px 22px;
-  background-position: left var(--eq-x) top 150px, right var(--eq-xr) top 260px, 0 0, 0 0; }
-main > section.section:has(.side-img) { background-position: left var(--eq-x) top 600px, right var(--eq-xr) top 260px, 0 0, 0 0; }
-main > section.section:nth-of-type(1) { background-image: url("images/eq/L1.png"), url("images/eq/R1.png"), var(--gridD); }
-main > section.section:nth-of-type(2) { background-image: url("images/eq/L2.png"), url("images/eq/R2.png"), var(--gridL); }
-main > section.section:nth-of-type(3) { background-image: url("images/eq/L3.png"), url("images/eq/R3.png"), var(--gridD); }
-main > section.section:nth-of-type(4) { background-image: url("images/eq/L4.png"), url("images/eq/R4.png"), var(--gridL); }
-main > section.section:nth-of-type(5) { background-image: url("images/eq/L5.png"), url("images/eq/R5.png"), var(--gridD); }
-main > section.section:nth-of-type(6) { background-image: url("images/eq/L6.png"), url("images/eq/R6.png"), var(--gridL); }
-main > section.section:nth-of-type(7) { background-image: url("images/eq/L7.png"), url("images/eq/R7.png"), var(--gridD); }
-main > section.section:nth-of-type(8) { background-image: url("images/eq/L8.png"), url("images/eq/R8.png"), var(--gridL); }
-main > section.section:nth-of-type(odd) { background-size: 380px auto, 380px auto, 22px 22px, 22px 22px; background-repeat: no-repeat, no-repeat, repeat, repeat; }
-@media (max-width: 1100px) {
-  main > section.section { background-image: var(--gridL) !important; background-size: 22px 22px !important; background-position: 0 0 !important; background-repeat: repeat !important; }
-  main > section.section:nth-of-type(odd) { background-image: var(--gridD) !important; }
-}
-
+/* v13: one continuous column of equations down each side of the page, in a neutral grey
+   that reads on both the light and dark sections; content sits above it */
+main > section.section { background-image: var(--gridL); background-size: 22px 22px; background-repeat: repeat; background-position: 0 0; }
+main > section.section:nth-of-type(odd) { background-image: var(--gridD); background-size: 22px 22px; background-repeat: repeat; background-position: 0 0; }
+main { position: relative; }
+main::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image: url("images/eq/L1.png"), url("images/eq/L2.png"), url("images/eq/L3.png"), url("images/eq/L4.png"), url("images/eq/L5.png"), url("images/eq/R1.png"), url("images/eq/R2.png"), url("images/eq/R3.png"), url("images/eq/R4.png"), url("images/eq/R5.png");
+  background-size: 380px 3000px; background-repeat: no-repeat;
+  background-position: left var(--eq-x) top 60px, left var(--eq-x) top 3060px, left var(--eq-x) top 6060px, left var(--eq-x) top 9060px, left var(--eq-x) top 12060px, right var(--eq-xr) top 180px, right var(--eq-xr) top 3180px, right var(--eq-xr) top 6180px, right var(--eq-xr) top 9180px, right var(--eq-xr) top 12180px; }
+main > section.section > .page { position: relative; z-index: 2; }
+@media (max-width: 1100px) { main::before { display: none; } }
 .slide img { object-position: 50% 10%; }
 
 /* video slides */
