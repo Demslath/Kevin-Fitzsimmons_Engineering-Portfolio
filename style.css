@@ -1012,3 +1012,86 @@ main > section.section:nth-of-type(odd) .split-head .sc { color: var(--slate); }
 .cp-strip-text h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 700; line-height: 1.2; }
 .cp-strip:hover h3 { color: var(--accent); }
 @media (max-width: 760px) { .cp-strip { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   v11: SLIDESHOWS
+   ============================================================ */
+.slides { width: 100%; }
+.slides-stage { position: relative; overflow: hidden; border-radius: 10px; background: #fff; width: 100%; }
+.slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; }
+.slide.is-active { opacity: 1; visibility: visible; transition: opacity .6s ease; }
+.slide button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
+.slide button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide img.contain { object-fit: contain; padding: 4%; box-sizing: border-box; background: #fff; }
+.slide figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 16px 12px;
+  background: linear-gradient(transparent, rgba(12,14,11,.78)); color: #fff;
+  font-family: var(--sans); font-size: 0.9rem; font-weight: 500; pointer-events: none;
+}
+.slides-arrow {
+  all: unset; cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(18,22,17,.72); color: #fff; transition: background .2s;
+}
+.slides-arrow svg { width: 10px; height: 16px; }
+.slides-arrow:hover { background: var(--accent); }
+.slides-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.slides-arrow.prev { left: 12px; } .slides-arrow.next { right: 12px; }
+.slides-count { position: absolute; top: 12px; right: 12px; z-index: 2; background: rgba(18,22,17,.72); color: #fff;
+  font-size: 0.78rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+.slides-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; margin-top: 10px; }
+.slides-thumbs button { all: unset; cursor: pointer; aspect-ratio: 1; border-radius: 6px; overflow: hidden; background: #fff;
+  opacity: .55; outline: 2px solid transparent; outline-offset: 0; transition: opacity .2s, outline-color .2s; }
+.slides-thumbs button img { width: 100%; height: 100%; object-fit: cover; }
+.slides-thumbs button.contain img { object-fit: contain; }
+.slides-thumbs button:hover, .slides-thumbs button.is-active { opacity: 1; }
+.slides-thumbs button.is-active { outline-color: var(--accent); }
+.slides-thumbs button:focus-visible { outline-color: var(--paper); opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .slide, .slide.is-active { transition: none; } }
+
+/* course project cards with a slideshow column */
+.cproj-media { display: block; background: transparent; padding: 18px; }
+.cproj-media .slides-stage { border-radius: 8px; }
+.cproj { align-items: center; }
+
+/* workshop: alternating product rows */
+.product-media { display: block; }
+.product-media > * { aspect-ratio: auto; background: none; overflow: visible; }
+.product.flip > .product-media { order: 2; }
+@media (max-width: 860px) { .product.flip > .product-media { order: 0; } }
+.product { align-items: center; }
+
+/* ============================================================
+   v11: EQUATIONS AS TEXTURE
+   a column of faint calculations from the course reports, set in the
+   empty label column and fading out before the text begins
+   ============================================================ */
+main > section.section:nth-of-type(even) {
+  background-image:
+    url("images/eq_light.png"),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-repeat: no-repeat, repeat, repeat;
+  background-position: left max(8px, calc(50% - 600px)) top 190px, 0 0, 0 0;
+  background-size: 300px auto, 22px 22px, 22px 22px;
+}
+main > section.section:nth-of-type(odd):has(#edu-h, #train-h, #did-h, #pbr-h, #tl-h) {
+  background-image:
+    url("images/eq_dark.png"),
+    linear-gradient(rgba(27, 31, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 31, 25, 0.045) 1px, transparent 1px);
+  background-repeat: no-repeat, repeat, repeat;
+  background-position: left max(8px, calc(50% - 600px)) top 190px, 0 0, 0 0;
+  background-size: 300px auto, 22px 22px, 22px 22px;
+}
+/* sections whose left column holds a photo or that run full width keep only the grid */
+main > section.section:has(.side-img, .product, .cprojects, .pillars, .shelf, .closer, .train, .figs) { background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 22px 22px; background-position: 0 0; background-repeat: repeat; }
+main > section.section:nth-of-type(odd):has(.side-img, .product, .cprojects, .pillars, .shelf, .closer, .train, .figs) { background-image:
+    linear-gradient(rgba(27,31,25,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(27,31,25,.045) 1px, transparent 1px); }
+@media (max-width: 1100px) {
+  main > section.section { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px) !important; background-size: 22px 22px !important; background-position: 0 0 !important; }
+  main > section.section:nth-of-type(odd) { background-image: linear-gradient(rgba(27,31,25,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(27,31,25,.045) 1px, transparent 1px) !important; }
+}
+.slide img { object-position: 50% 10%; }
