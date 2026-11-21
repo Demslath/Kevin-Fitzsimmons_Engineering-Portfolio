@@ -1063,35 +1063,31 @@ main > section.section:nth-of-type(odd) .split-head .sc { color: var(--slate); }
 .product { align-items: center; }
 
 /* ============================================================
-   v11: EQUATIONS AS TEXTURE
-   a column of faint calculations from the course reports, set in the
-   empty label column and fading out before the text begins
+   v12: EQUATIONS AS TEXTURE
+   Columns of calculations from Kevin's reports and notebooks (BREE 322,
+   415, 420, 319 and CHEE 591), set in the empty label column or the page
+   margins and fading out before the text begins.
    ============================================================ */
-main > section.section:nth-of-type(even) {
-  background-image:
-    url("images/eq_light.png"),
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-repeat: no-repeat, repeat, repeat;
-  background-position: left max(8px, calc(50% - 600px)) top 190px, 0 0, 0 0;
-  background-size: 300px auto, 22px 22px, 22px 22px;
-}
-main > section.section:nth-of-type(odd):has(#edu-h, #train-h, #did-h, #pbr-h, #tl-h) {
-  background-image:
-    url("images/eq_dark.png"),
-    linear-gradient(rgba(27, 31, 25, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 31, 25, 0.045) 1px, transparent 1px);
-  background-repeat: no-repeat, repeat, repeat;
-  background-position: left max(8px, calc(50% - 600px)) top 190px, 0 0, 0 0;
-  background-size: 300px auto, 22px 22px, 22px 22px;
-}
-/* sections whose left column holds a photo or that run full width keep only the grid */
-main > section.section:has(.side-img, .product, .cprojects, .pillars, .shelf, .closer, .train, .figs) { background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 22px 22px; background-position: 0 0; background-repeat: repeat; }
-main > section.section:nth-of-type(odd):has(.side-img, .product, .cprojects, .pillars, .shelf, .closer, .train, .figs) { background-image:
-    linear-gradient(rgba(27,31,25,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(27,31,25,.045) 1px, transparent 1px); }
+:root { --eq-x: max(0px, calc(50% - 600px)); --gridL: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  --gridD: linear-gradient(rgba(27,31,25,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(27,31,25,.045) 1px, transparent 1px); }
+
+/* one grid per section: dark sections paint their own ground so the body grid no longer shows through offset */
+main > section.section:nth-of-type(even) { background-color: var(--field); }
+
+main > section.section { background-repeat: no-repeat, repeat, repeat; background-size: 380px auto, 22px 22px, 22px 22px;
+  background-position: left var(--eq-x) top 150px, 0 0, 0 0; }
+main > section.section:nth-of-type(4n+2) { background-image: url("images/eq_light_0.png"), var(--gridL); }
+main > section.section:nth-of-type(4n)   { background-image: url("images/eq_light_1.png"), var(--gridL); }
+main > section.section:nth-of-type(4n+1) { background-image: url("images/eq_dark_2.png"), var(--gridD); }
+main > section.section:nth-of-type(odd) { background-size: 380px auto, 22px 22px, 22px 22px; background-repeat: no-repeat, repeat, repeat; }
+main > section.section:nth-of-type(odd):has(.side-img) { background-position: left var(--eq-x) top 600px, 0 0, 0 0; }
+main > section.section:nth-of-type(4n+3) { background-image: url("images/eq_dark_1.png"), var(--gridD); }
+
+/* a photo already fills the label column: start the equations beneath it */
+main > section.section:has(.side-img) { background-position: left var(--eq-x) top 600px, 0 0, 0 0; }
+
 @media (max-width: 1100px) {
-  main > section.section { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px) !important; background-size: 22px 22px !important; background-position: 0 0 !important; }
-  main > section.section:nth-of-type(odd) { background-image: linear-gradient(rgba(27,31,25,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(27,31,25,.045) 1px, transparent 1px) !important; }
+  main > section.section { background-image: var(--gridL) !important; background-size: 22px 22px !important; background-position: 0 0 !important; background-repeat: repeat !important; }
+  main > section.section:nth-of-type(odd) { background-image: var(--gridD) !important; }
 }
 .slide img { object-position: 50% 10%; }
