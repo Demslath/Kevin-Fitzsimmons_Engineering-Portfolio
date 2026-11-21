@@ -1085,10 +1085,6 @@ main > section.section:nth-of-type(5) { background-image: url("images/eq/L5.png"
 main > section.section:nth-of-type(6) { background-image: url("images/eq/L6.png"), url("images/eq/R6.png"), var(--gridL); }
 main > section.section:nth-of-type(7) { background-image: url("images/eq/L7.png"), url("images/eq/R7.png"), var(--gridD); }
 main > section.section:nth-of-type(8) { background-image: url("images/eq/L8.png"), url("images/eq/R8.png"), var(--gridL); }
-main > section.section:nth-of-type(9) { background-image: url("images/eq/L9.png"), url("images/eq/R9.png"), var(--gridD); }
-main > section.section:nth-of-type(10) { background-image: url("images/eq/L10.png"), url("images/eq/R10.png"), var(--gridL); }
-main > section.section:nth-of-type(11) { background-image: url("images/eq/L11.png"), url("images/eq/R11.png"), var(--gridD); }
-main > section.section:nth-of-type(12) { background-image: url("images/eq/L12.png"), url("images/eq/R12.png"), var(--gridL); }
 main > section.section:nth-of-type(odd) { background-size: 380px auto, 380px auto, 22px 22px, 22px 22px; background-repeat: no-repeat, no-repeat, repeat, repeat; }
 @media (max-width: 1100px) {
   main > section.section { background-image: var(--gridL) !important; background-size: 22px 22px !important; background-position: 0 0 !important; background-repeat: repeat !important; }
