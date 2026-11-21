@@ -1018,8 +1018,8 @@ main > section.section:nth-of-type(odd) .split-head .sc { color: var(--slate); }
    ============================================================ */
 .slides { width: 100%; }
 .slides-stage { position: relative; overflow: hidden; border-radius: 10px; background: #fff; width: 100%; }
-.slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; }
-.slide.is-active { opacity: 1; visibility: visible; transition: opacity .6s ease; }
+.slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s; }
+.slide.is-active { opacity: 1; visibility: visible; transition: opacity .3s ease; }
 .slide button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
 .slide button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
@@ -1079,12 +1079,15 @@ main > section.section:nth-of-type(even) { background-color: var(--field); }
 main > section.section { background-image: var(--gridL); background-size: 22px 22px; background-repeat: repeat; background-position: 0 0; }
 main > section.section:nth-of-type(odd) { background-image: var(--gridD); background-size: 22px 22px; background-repeat: repeat; background-position: 0 0; }
 main { position: relative; }
-main::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background-image: url("images/eq/L1.png"), url("images/eq/L2.png"), url("images/eq/L3.png"), url("images/eq/L4.png"), url("images/eq/L5.png"), url("images/eq/R1.png"), url("images/eq/R2.png"), url("images/eq/R3.png"), url("images/eq/R4.png"), url("images/eq/R5.png");
-  background-size: 380px 3000px; background-repeat: no-repeat;
-  background-position: left var(--eq-x) top 60px, left var(--eq-x) top 3060px, left var(--eq-x) top 6060px, left var(--eq-x) top 9060px, left var(--eq-x) top 12060px, right var(--eq-xr) top 180px, right var(--eq-xr) top 3180px, right var(--eq-xr) top 6180px, right var(--eq-xr) top 9180px, right var(--eq-xr) top 12180px; }
+main::before, main::after { content: ""; position: absolute; top: 0; bottom: 0; z-index: 1; pointer-events: none;
+  /* each column ends where the text column begins */
+  width: calc((100% - var(--page)) / 2 + var(--gut) - 18px);
+  background-size: 420px 3000px; background-repeat: no-repeat; }
+main::before { left: 0; background-image: url("images/eq/L1.png"), url("images/eq/L2.png"), url("images/eq/L3.png"), url("images/eq/L4.png"), url("images/eq/L5.png"); background-position: right top 60px, right top 3060px, right top 6060px, right top 9060px, right top 12060px; }
+main::after { right: 0; background-image: url("images/eq/R1.png"), url("images/eq/R2.png"), url("images/eq/R3.png"), url("images/eq/R4.png"), url("images/eq/R5.png"); background-position: left top 180px, left top 3180px, left top 6180px, left top 9180px, left top 12180px; }
 main > section.section > .page { position: relative; z-index: 2; }
-@media (max-width: 1100px) { main::before { display: none; } }
+@media (max-width: 1339px) { main::before, main::after { display: none; } }
+
 .slide img { object-position: 50% 10%; }
 
 /* video slides */
@@ -1092,3 +1095,14 @@ main > section.section > .page { position: relative; z-index: 2; }
 .cproj.featured { border-left-color: var(--accent); }
 .cproj .honour { margin: 0 0 12px; }
 .cproj-media .slides-stage[style*="3/4"] { max-height: 640px; margin: 0 auto; }
+
+/* the card/product media button resets must not reach the slideshow arrows */
+.slides .slides-arrow {
+  all: unset; cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(18,22,17,.72); color: #fff; transition: background .2s;
+}
+.slides .slides-arrow svg { width: 10px; height: 16px; }
+.slides .slides-arrow:hover { background: var(--accent); }
+.slides .slides-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.slides .slides-arrow.prev { left: 12px; } .slides .slides-arrow.next { right: 12px; }
