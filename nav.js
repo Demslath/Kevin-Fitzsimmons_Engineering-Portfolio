@@ -72,3 +72,13 @@
     a.rel = "noopener";
   });
 })();
+
+/* copy-to-clipboard buttons (the contact email) */
+document.querySelectorAll("[data-copy]").forEach((b) => {
+  const label = b.textContent;
+  b.addEventListener("click", () => {
+    const done = () => { b.textContent = "Copied"; b.classList.add("is-done"); setTimeout(() => { b.textContent = label; b.classList.remove("is-done"); }, 1800); };
+    if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy).then(done, () => {});
+    else { const t = document.createElement("textarea"); t.value = b.dataset.copy; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); done(); }
+  });
+});

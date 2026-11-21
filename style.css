@@ -1106,3 +1106,46 @@ main > section.section > .page { position: relative; z-index: 2; }
 .slides .slides-arrow:hover { background: var(--accent); }
 .slides .slides-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .slides .slides-arrow.prev { left: 12px; } .slides .slides-arrow.next { right: 12px; }
+
+/* ============================================================
+   v14: proof strip, case briefs, closing call to action
+   ============================================================ */
+/* proof strip: four results directly beneath the splash */
+main > section.section.proof { padding: clamp(36px, 5vw, 56px) 0; }
+.proof-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.proof-list a { display: flex; flex-direction: column; gap: 10px; height: 100%; box-sizing: border-box; padding: 22px 22px 24px;
+  text-decoration: none; color: inherit; background: var(--moss-bg); border-left: 4px solid var(--moss-line); border-radius: 0 10px 10px 0; transition: border-color .2s; }
+.proof-list a:hover, .proof-list a:focus-visible { border-left-color: var(--accent); }
+.proof-list strong { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1; color: var(--paper); }
+.proof-list span { color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+@media (max-width: 900px) { .proof-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .proof-list { grid-template-columns: 1fr; } }
+
+/* case brief: Problem / My role / Approach / Result */
+.brief { margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: none; }
+.brief > div { background: var(--slate-bg); border-left: 4px solid var(--slate-line); border-radius: 0 10px 10px 0; padding: 18px 20px; }
+.brief dt { font-family: var(--sans); font-weight: 600; font-size: 0.82rem; letter-spacing: .02em; color: var(--slate-line); margin: 0 0 6px; }
+.brief dd { margin: 0; font-size: 0.97rem; line-height: 1.55; color: var(--muted); }
+.brief dd strong { color: var(--paper); }
+.brief > div:nth-child(2) { border-left-color: var(--accent); }
+.brief > div:nth-child(2) dt { color: var(--accent); }
+@media (max-width: 760px) { .brief { grid-template-columns: 1fr; } }
+/* inside a project card: a plain stacked list, no nested boxes */
+.brief.compact { display: block; margin: 14px 0 12px; }
+.brief.compact > div { background: none; border: 0; border-radius: 0; padding: 0; display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px; margin: 0 0 10px; }
+.brief.compact dt { margin: 3px 0 0; color: var(--box-line); }
+.brief.compact > div:nth-child(2) dt { color: var(--accent); }
+.brief.compact dd { font-size: 0.95rem; }
+
+/* closing call to action */
+.cta h2 { margin-top: 14px; }
+.cta-status { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; color: var(--paper); max-width: 70ch; }
+.cta-status .dot { width: 10px; height: 10px; flex: 0 0 10px; border-radius: 50%; background: #5fae6e; box-shadow: 0 0 0 4px rgba(95,174,110,.22); }
+.cta-note { margin-top: 18px; max-width: 62ch; }
+.cta-mail { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 18px; }
+.cta-mail .mail { margin-top: 0; }
+.copy-btn { all: unset; cursor: pointer; font-family: var(--sans); font-weight: 600; font-size: 0.88rem; padding: 8px 14px; border-radius: 999px;
+  border: 1.5px solid var(--accent); color: var(--paper); transition: background .2s, color .2s; }
+.copy-btn:hover { background: var(--accent); color: #fff; }
+.copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.copy-btn.is-done { background: var(--accent); color: #fff; }
