@@ -136,7 +136,7 @@ document.querySelectorAll("[data-copy]").forEach((b) => {
 
   function measure() {
     const banner = (document.querySelector(".nav") || {}).offsetHeight || 72;
-    document.documentElement.style.setProperty("--banner-h", banner + "px");
+    document.documentElement.style.setProperty("--nav-h", banner + "px");
     panels.forEach((p) => p.style.setProperty("--stick", Math.min(banner, window.innerHeight - p.offsetHeight) + "px"));
   }
 

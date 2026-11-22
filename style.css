@@ -1,3 +1,11 @@
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-200.woff2") format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-200i.woff2") format("woff2"); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-400i.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-600i.woff2") format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-900.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/mori-900i.woff2") format("woff2"); font-weight: 900; font-style: italic; font-display: swap; }
 /* ============================================================
    Kevin Fitzsimmons — Engineering Portfolio
    Visual system taken from the cover of "Digestate to Clean Water":
@@ -8,8 +16,6 @@
 @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-500-roman.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-500-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-700-roman.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Mori"; src: url("fonts/PPMori-Regular.woff2") format("woff2"); font-weight: 400 500; font-display: swap; }
-@font-face { font-family: "PP Mori"; src: url("fonts/PPMori-SemiBold.woff2") format("woff2"); font-weight: 600 700; font-display: swap; }
 @font-face { font-family: var(--sans); src: url("fonts/inter-tight-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: var(--sans); src: url("fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 @font-face { font-family: var(--sans); src: url("fonts/inter-tight-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
@@ -758,7 +764,7 @@ html { scroll-padding-top: 84px; }
 
 /* phone menu */
 .nav-burger { display: none; }
-@media (max-width: 760px) {
+@media (max-width: 1100px) {
   .nav-inner { flex-direction: row !important; align-items: center !important; flex-wrap: wrap; }
   .nav-burger {
     all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-left: auto;
@@ -1213,3 +1219,127 @@ main > section.section > .page { position: relative; z-index: 2; }
 .cover-focus { color: var(--bone); font-family: var(--sans); font-size: 1rem; line-height: 1.45; }
 .cover-cycle { display: inline-block; color: #fff; font-weight: 600; transition: opacity .35s ease, transform .35s ease; }
 .cover-cycle.out { opacity: 0; transform: translateY(6px); }
+
+
+/* ============================================================
+   v18: PP Mori throughout, and stronger colour blocks
+   Weights do the work the serif used to: ExtraLight for large
+   headings and figures, Regular for reading, SemiBold for titles and
+   emphasis, Black for the panel words. Italic only for species names.
+   ============================================================ */
+:root { --serif: "PP Mori", "Inter Tight", "Helvetica Neue", Arial, sans-serif; }
+body { font-family: var(--sans); font-weight: 400; font-feature-settings: "ss01" 0; }
+h1, h2, .masthead h1, .cover-title .name, .lead, .closer h2, .cta h2 { font-family: var(--sans); font-weight: 200; letter-spacing: -0.025em; }
+h2 { line-height: 1.08; }
+h3, .nav-name, .cproj h3, .feature h3, .report h3, .pillars h3, .timeline h3, .courses .cname { font-family: var(--sans); font-weight: 600; letter-spacing: -0.01em; }
+strong, b { font-weight: 600; }
+.panel-word { font-weight: 900; letter-spacing: -0.045em; }
+.panel-word small { font-family: var(--sans); font-weight: 200; letter-spacing: 0; }
+.sc, .masthead .sc, .split-head .sc, .fig figcaption b, .facts dt {
+  font-family: var(--sans); font-variant-caps: normal; font-feature-settings: normal;
+  font-weight: 600; font-size: .8rem; letter-spacing: .03em;
+}
+i, em, .italic { font-family: var(--sans); font-style: italic; font-weight: 400; }
+.pillars .link { font-family: var(--sans); font-style: normal; font-weight: 600; font-size: .95rem; }
+.cover-title .name { font-weight: 200; letter-spacing: -0.03em; }
+.cover-title .role { font-family: var(--sans); font-style: normal; font-weight: 600; letter-spacing: 0; }
+.nav-name { font-size: 1.32rem; letter-spacing: -0.015em; }
+.lead { font-size: clamp(1.45rem, 2.3vw, 1.95rem); line-height: 1.3; }
+.readings strong, .stat strong { font-family: var(--sans); font-weight: 200; letter-spacing: -0.03em; font-feature-settings: "tnum"; }
+
+/* ---------- a wider panel palette: five light and five deep, plus orange to close each page ---------- */
+main > section.section:nth-of-type(1) { background-color: #e7edf4; --word: #22344d; --word-sub: #5b6a7d; --block: #22344d; }
+main > section.section:nth-of-type(2) { background-color: #22344d; --word: #eef0ea; --word-sub: #aeb6a8; --block: #d6b47a; }
+main > section.section:nth-of-type(3) { background-color: #f2ead9; --word: #6b4f22; --word-sub: #8a7550; --block: #b08a4a; }
+main > section.section:nth-of-type(4) { background-color: #2b3420; --word: #eef0ea; --word-sub: #aeb6a8; --block: #7ea3cf; }
+main > section.section:nth-of-type(5) { background-color: #e9eddf; --word: #3f4a22; --word-sub: #66704a; --block: #6b7f3a; }
+main > section.section:nth-of-type(6) { background-color: #3a3022; --word: #eef0ea; --word-sub: #aeb6a8; --block: #d6b47a; }
+main > section.section:nth-of-type(7) { background-color: #e2eeec; --word: #173a40; --word-sub: #4f6e72; --block: #2b6f7c; }
+main > section.section:nth-of-type(8) { background-color: #173a40; --word: #eef0ea; --word-sub: #aeb6a8; --block: #9bb26a; }
+main > section.section:nth-of-type(9) { background-color: #efebe4; --word: #3a3022; --word-sub: #7a6a55; --block: #3a3022; }
+main > section.section:nth-of-type(10) { background-color: #171c16; --word: #eef0ea; --word-sub: #aeb6a8; --block: #7ea3cf; }
+main > section.section:nth-of-type(11) { background-color: #e7edf4; --word: #22344d; --word-sub: #5b6a7d; --block: #22344d; }
+main > section.section:nth-of-type(12) { background-color: #22344d; --word: #eef0ea; --word-sub: #aeb6a8; --block: #d6b47a; }
+
+/* the closing panel on every page: hi-vis orange, the colour of the field vest */
+main > section.section.cta-section {
+  background-color: #ff7a3d; background-image: none;
+  --paper: #171c16; --muted: #2f2a22; --bone: #171c16; --rule: rgba(23,28,22,.2); --accent: #171c16; --accent-ink: #ff7a3d;
+  color: #171c16;
+}
+.cta-section .cta h2 { font-weight: 900; letter-spacing: -0.045em; font-size: clamp(3rem, 7vw, 6.2rem); line-height: .92; color: #171c16; }
+.cta-section .cta-status { color: #171c16; }
+.cta-section .cta-status .dot { background: #171c16; box-shadow: 0 0 0 4px rgba(23,28,22,.18); }
+.cta-section .mail.link { color: #171c16; text-decoration-color: rgba(23,28,22,.45); }
+.cta-section .copy-btn { border-color: #171c16; color: #171c16; }
+.cta-section .copy-btn:hover, .cta-section .copy-btn.is-done { background: #171c16; color: #ff7a3d; }
+.cta-section .btn { border-color: #171c16; color: #171c16; background: transparent; }
+.cta-section .btn:hover { background: rgba(23,28,22,.08); }
+.cta-section .btn-solid { background: #171c16; color: #ff7a3d; border-color: #171c16; }
+.cta-section .btn-solid:hover { background: #000; color: #ffa070; }
+.cta-section .panel-eq { display: none; }
+
+/* ---------- photos sit on a solid offset block in a contrasting colour ---------- */
+@media (min-width: 761px) {
+  .fig .ph, .side-img img, .slides-stage, .feature-media img, .cp-strip-imgs { box-shadow: 14px 14px 0 var(--block, #d6b47a); }
+  .fig .ph, .slides-stage { border-radius: 4px; }
+}
+
+/* ---------- solid colour cards ---------- */
+/* light-on-dark and dark-on-light ink sets for solid fills */
+.brief > div, .pillars article, .train li, .readings li {
+  --paper: #eef0ea; --muted: #d3d8cd; --bone: #eef0ea; --rule: rgba(238,240,234,.22); --box-line: #eef0ea;
+  color: #eef0ea; border: 0 !important; border-radius: 6px; box-shadow: none;
+}
+/* case brief: Problem, My role, Approach, Result */
+.brief > div:nth-child(1) { background: #22344d; }
+.brief > div:nth-child(2) { background: #ff7a3d; --paper: #171c16; --muted: #2f2a22; color: #171c16; }
+.brief > div:nth-child(3) { background: #2f3c1f; }
+.brief > div:nth-child(4) { background: #d6b47a; --paper: #171c16; --muted: #3a3022; color: #171c16; }
+.brief > div dt, .brief > div:nth-child(2) dt { color: inherit !important; opacity: .8; font-family: var(--sans); font-weight: 600; }
+.brief > div dd { color: inherit; }
+.brief > div dd strong { color: inherit; }
+/* course project cards keep the plain stacked list */
+.brief.compact > div { background: none; color: inherit; --paper: inherit; --muted: inherit; border-radius: 0; }
+.brief.compact > div dt { opacity: 1; }
+
+/* approach pillars: four solid colours */
+.pillars article:nth-child(4n+1) { background: #22344d; }
+.pillars article:nth-child(4n+2) { background: #2f3c1f; }
+.pillars article:nth-child(4n+3) { background: #d6b47a; --paper: #171c16; --muted: #3a3022; color: #171c16; }
+.pillars article:nth-child(4n+4) { background: #173a40; }
+.pillars article .link { color: inherit; }
+
+/* treatment train: each stage a step deeper, like water getting cleaner down the line */
+.train li:nth-child(1) { background: #7c6a4f; }
+.train li:nth-child(2) { background: #5d5a3e; }
+.train li:nth-child(3) { background: #3e5a4a; }
+.train li:nth-child(4) { background: #22344d; }
+.train li::before { background: rgba(238,240,234,.16) !important; color: #eef0ea !important; border-color: transparent !important; }
+.train .out { color: #f2dcb4 !important; }
+
+/* experimental results: big light figures on solid tiles */
+.readings li:nth-child(1) { background: #22344d; }
+.readings li:nth-child(2) { background: #2f3c1f; }
+.readings li:nth-child(3) { background: #ff7a3d; --paper: #171c16; --muted: #2f2a22; color: #171c16; }
+.readings strong { color: inherit !important; font-size: clamp(2.2rem, 3.6vw, 3rem) !important; }
+.readings span { color: inherit; opacity: .85; }
+
+/* a quieter frame for the remaining boxes so the solid cards stand out */
+.facts, .note, .timeline li, .roles, .report, .course-grid > .courses, .feature > div:last-child { border-radius: 6px; }
+
+/* banner: one line, fixed height, as before the font change */
+@media (min-width: 1101px) {
+  .nav-inner { height: var(--banner-h); flex-wrap: nowrap; }
+  .nav .nav-links { flex-wrap: nowrap; white-space: nowrap; }
+  .nav-crumb { max-width: 30vw; }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .nav-inner { height: var(--banner-h); }
+  .menu-open .nav-inner { height: auto; }
+}
+.nav-burger { font-family: var(--sans); font-variant-caps: normal; font-feature-settings: normal; font-weight: 600; font-size: 1rem; letter-spacing: .01em; color: #fff; }
+.pillars article h3, .pillars article p, .brief > div dd, .readings li span { color: inherit !important; }
+.pillars article p { opacity: .9; }
+.readings strong { white-space: nowrap; }
+.readings li:nth-child(2) { background: #d6b47a; --paper: #171c16; --muted: #3a3022; color: #171c16; }
