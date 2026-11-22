@@ -8,9 +8,11 @@
 @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-500-roman.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-500-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-700-roman.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "Inter Tight"; src: url("fonts/inter-tight-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Inter Tight"; src: url("fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Inter Tight"; src: url("fonts/inter-tight-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/PPMori-Regular.woff2") format("woff2"); font-weight: 400 500; font-display: swap; }
+@font-face { font-family: "PP Mori"; src: url("fonts/PPMori-SemiBold.woff2") format("woff2"); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: var(--sans); src: url("fonts/inter-tight-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: var(--sans); src: url("fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: var(--sans); src: url("fonts/inter-tight-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
 
 :root {
   /* colour — sampled from the report cover */
@@ -27,7 +29,8 @@
   --eye: #000;
 
   --serif: "CMU Serif", "Latin Modern Roman", "Computer Modern", Georgia, serif;
-  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --sans: "PP Mori", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --display: "PP Mori", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
 
   /* type scale — 1.333 (perfect fourth) from 17px */
   --t-sm: 0.875rem;
@@ -938,7 +941,7 @@ p strong.hl { color: var(--accent); }
   border-left: 3px solid var(--teal); padding-left: 14px; }
 
 /* fonts that carry the Indigenous-language characters (ʷ θ ə ɬ ḵ x̱ y̓) */
-body, .muted, p, dd, small { font-family: "Inter Tight", "Segoe UI", "Noto Sans", "Helvetica Neue", Arial, sans-serif; }
+body, .muted, p, dd, small { font-family: var(--sans); }
 
 /* ============================================================
    v10: THREE-COLOUR BOX SYSTEM
@@ -1074,19 +1077,6 @@ main > section.section:nth-of-type(odd) .split-head .sc { color: var(--slate); }
 /* one grid per section: dark sections paint their own ground so the body grid no longer shows through offset */
 main > section.section:nth-of-type(even) { background-color: var(--field); }
 
-/* v13: one continuous column of equations down each side of the page, in a neutral grey
-   that reads on both the light and dark sections; content sits above it */
-main > section.section { background-image: var(--gridL); background-size: 22px 22px; background-repeat: repeat; background-position: 0 0; }
-main > section.section:nth-of-type(odd) { background-image: var(--gridD); background-size: 22px 22px; background-repeat: repeat; background-position: 0 0; }
-main { position: relative; }
-main::before, main::after { content: ""; position: absolute; top: 0; bottom: 0; z-index: 1; pointer-events: none;
-  /* each column ends where the text column begins */
-  width: calc((100% - var(--page)) / 2 + var(--gut) - 18px);
-  background-size: 420px 3000px; background-repeat: no-repeat; }
-main::before { left: 0; background-image: url("images/eq/L1.png"), url("images/eq/L2.png"), url("images/eq/L3.png"), url("images/eq/L4.png"), url("images/eq/L5.png"); background-position: right top 60px, right top 3060px, right top 6060px, right top 9060px, right top 12060px; }
-main::after { right: 0; background-image: url("images/eq/R1.png"), url("images/eq/R2.png"), url("images/eq/R3.png"), url("images/eq/R4.png"), url("images/eq/R5.png"); background-position: left top 180px, left top 3180px, left top 6180px, left top 9180px, left top 12180px; }
-main > section.section > .page { position: relative; z-index: 2; }
-@media (max-width: 1339px) { main::before, main::after { display: none; } }
 
 .slide img { object-position: 50% 10%; }
 
@@ -1159,3 +1149,67 @@ main > section.section.proof { padding: clamp(36px, 5vw, 56px) 0; }
 @keyframes crumbIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .nav-crumb.is-swap .nav-crumb-sec { animation: none; } }
 @media (max-width: 760px) { .nav-crumb { max-width: 58vw; font-size: 0.74rem; } }
+
+
+/* ============================================================
+   v17: stacked panels on every page
+   Each section is a full-height panel in its own colour that slides up
+   over the one before. Equations sit in the margins of each panel and
+   drift slowly only while the visitor scrolls.
+   ============================================================ */
+main > section.section { position: relative; }
+main > section.section:nth-of-type(1) { background-color: #e7edf4; --word: #22344d; --word-sub: #5b6a7d; z-index: 1; }
+main > section.section:nth-of-type(2) { background-color: #22344d; --word: #eef0ea; --word-sub: #aeb6a8; z-index: 2; }
+main > section.section:nth-of-type(3) { background-color: #f2ead9; --word: #6b4f22; --word-sub: #8a7550; z-index: 3; }
+main > section.section:nth-of-type(4) { background-color: #2b3420; --word: #eef0ea; --word-sub: #aeb6a8; z-index: 4; }
+main > section.section:nth-of-type(5) { background-color: #e9eddf; --word: #3f4a22; --word-sub: #66704a; z-index: 5; }
+main > section.section:nth-of-type(6) { background-color: #3a3022; --word: #eef0ea; --word-sub: #aeb6a8; z-index: 6; }
+main > section.section:nth-of-type(7) { background-color: #e7edf4; --word: #22344d; --word-sub: #5b6a7d; z-index: 7; }
+main > section.section:nth-of-type(8) { background-color: #22344d; --word: #eef0ea; --word-sub: #aeb6a8; z-index: 8; }
+main > section.section:nth-of-type(9) { background-color: #f2ead9; --word: #6b4f22; --word-sub: #8a7550; z-index: 9; }
+main > section.section:nth-of-type(10) { background-color: #2b3420; --word: #eef0ea; --word-sub: #aeb6a8; z-index: 10; }
+main > section.section:nth-of-type(11) { background-color: #e9eddf; --word: #3f4a22; --word-sub: #66704a; z-index: 11; }
+main > section.section:nth-of-type(12) { background-color: #3a3022; --word: #eef0ea; --word-sub: #aeb6a8; z-index: 12; }
+.panel-word {
+  position: relative; z-index: 2; box-sizing: border-box;
+  max-width: var(--page); margin: 0 auto clamp(26px, 3.6vw, 44px); padding: 0 var(--gut);
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(2.9rem, 7vw, 6.4rem); line-height: .9; letter-spacing: -0.05em;
+  color: var(--word);
+}
+body.home .panel-word { font-size: clamp(3.6rem, 10.5vw, 9.5rem); line-height: .86; letter-spacing: -0.055em; }
+.panel-word small { display: block; margin-top: 16px; font-family: var(--serif); font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.25rem); letter-spacing: 0; line-height: 1.3; color: var(--word-sub); }
+/* the big word replaces the small label above each section heading */
+.has-word .split-head > .sc:first-child { display: none; }
+.has-word .split-head > .sc:first-child + * { margin-top: 0; }
+
+/* equations: one strip per margin, never repeated on a page; images load only near the screen */
+.panel-eq { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.panel-eq i {
+  position: absolute; top: 40px; height: 2600px;
+  width: calc((100% - var(--page)) / 2 + var(--gut) - 18px);
+  background-repeat: no-repeat; background-size: 420px 2600px;
+  opacity: .5; transform: translate3d(0, var(--eqy, 0px), 0); transition: opacity .6s ease;
+}
+.panel-eq i:first-child { left: 0; background-position: right top; }
+.panel-eq i:last-child { right: 0; background-position: left top; }
+main > section.section:nth-of-type(even) .panel-eq i { opacity: .42; }
+.panel-shade { display: none; }
+main > section.section > .page { position: relative; z-index: 2; }
+
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  main > section.section {
+    position: sticky; top: var(--stick, var(--banner-h, 72px));
+    min-height: calc(100vh - var(--banner-h, 72px)); box-sizing: border-box;
+    box-shadow: 0 -18px 40px rgba(10, 14, 9, .16);
+  }
+  main > section.section:first-of-type { box-shadow: none; }
+  .panel-shade { display: block; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: #0b0e0a; opacity: var(--cover, 0); }
+}
+@media (max-width: 1339px) { .panel-eq { display: none; } }
+@media (max-width: 760px) { body.home .panel-word, .panel-word { font-size: clamp(2.6rem, 13vw, 4.4rem); } }
+
+/* splash: focus line with a cycling word */
+.cover-focus { color: var(--bone); font-family: var(--sans); font-size: 1rem; line-height: 1.45; }
+.cover-cycle { display: inline-block; color: #fff; font-weight: 600; transition: opacity .35s ease, transform .35s ease; }
+.cover-cycle.out { opacity: 0; transform: translateY(6px); }

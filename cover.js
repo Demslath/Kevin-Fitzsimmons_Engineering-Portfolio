@@ -41,6 +41,8 @@
     let w = 0, h = 0, dpr = 1, visible = true, raf = 0, last = 0;
     let px = 0, py = 0, tx = 0, ty = 0; // pointer parallax
     const start = performance.now() - 40000 * Math.random();
+    const born = performance.now();
+    const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
 
     function resize() {
       const r = canvas.getBoundingClientRect();
@@ -52,7 +54,11 @@
     }
 
     function draw(now) {
-      const t = (now - start) / 1000;
+      const t = (now - start) / 1000 * 1.5;
+      // opening: the weave draws itself in over about 2.5 s
+      const intro = reduceMotion ? 1 : Math.min(1, (now - born) / 2600);
+      // scrolling away turns the weave and opens the eye
+      const sp = reduceMotion ? 0 : Math.min(1, Math.max(0, window.scrollY / Math.max(1, h)));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
 
@@ -63,8 +69,10 @@
       const thin = small ? 0.5 : 0.55;
 
       RIBBONS.forEach((rb, k) => {
-        const n = Math.round(rb.n * density * (small ? 0.65 : 1));
-        const spin = t * rb.speed;
+        const grow = ease(intro * 1.5 - k * 0.12);
+        if (grow <= 0) return;
+        const n = Math.max(2, Math.round(rb.n * density * (small ? 0.65 : 1) * grow));
+        const spin = t * rb.speed + Math.sign(rb.speed) * sp * 0.9;
         const breathe = Math.sin(t * 0.07 + k * 1.7) * 0.04;
         ctx.lineWidth = thin;
         ctx.strokeStyle = `rgba(${LINE}, ${rb.alpha})`;
@@ -82,19 +90,21 @@
         ctx.stroke();
       });
 
-      ARCS.forEach((a) => {
-        const rot = a.rot + t * a.speed;
+      ARCS.forEach((a, j) => {
+        const sweep = ease(intro * 1.4 - 0.35 - j * 0.12);
+        if (sweep <= 0) return;
+        const rot = a.rot + t * a.speed + Math.sign(a.speed) * sp * 0.6;
         ctx.lineWidth = a.w;
         ctx.strokeStyle = `rgba(${LINE}, ${a.alpha})`;
         ctx.beginPath();
-        ctx.ellipse(cx + a.off[0] * S, cy + a.off[1] * S, a.rx * S, a.ry * S, rot, 0, Math.PI * 2);
+        ctx.ellipse(cx + a.off[0] * S, cy + a.off[1] * S, a.rx * S, a.ry * S, rot, 0, Math.PI * 2 * sweep);
         ctx.stroke();
       });
 
       if (showEye) {
         ctx.fillStyle = "#000";
         ctx.beginPath();
-        ctx.arc(cx, cy, S * 0.19, 0, Math.PI * 2);
+        ctx.arc(cx, cy, S * 0.19 * ease(intro * 1.3) * (1 + sp * 1.6), 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -126,9 +136,23 @@
       }, { passive: true });
     }
 
+    window.addEventListener("scroll", () => { if (!raf && visible) draw(performance.now()); }, { passive: true });
     resize();
     play();
   }
 
   canvases.forEach(setup);
+})();
+
+/* The focus line under the title cycles through areas of interest. */
+(function () {
+  const el = document.querySelector(".cover-cycle[data-words]");
+  if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const words = el.dataset.words.split("|");
+  let i = -1;
+  function next() {
+    el.classList.add("out");
+    setTimeout(() => { i = (i + 1) % words.length; el.textContent = words[i]; el.classList.remove("out"); }, 350);
+  }
+  setTimeout(() => { next(); setInterval(next, 2600); }, 2400);
 })();

@@ -122,3 +122,64 @@ document.querySelectorAll("[data-copy]").forEach((b) => {
   window.addEventListener("resize", onScroll);
   update();
 })();
+
+/* Stacked panels: each section sticks once its bottom reaches the bottom of the
+   screen, so a tall panel is read in full before the next slides over it. The
+   covered panel dims slightly. Margin equations load only near the screen and
+   drift a little as the visitor scrolls (no motion when they stop). */
+(function () {
+  const panels = Array.from(document.querySelectorAll("main > section.section"));
+  if (!panels.length) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const desk = window.matchMedia("(min-width: 761px)");
+  const eqWide = window.matchMedia("(min-width: 1340px)");
+
+  function measure() {
+    const banner = (document.querySelector(".nav") || {}).offsetHeight || 72;
+    document.documentElement.style.setProperty("--banner-h", banner + "px");
+    panels.forEach((p) => p.style.setProperty("--stick", Math.min(banner, window.innerHeight - p.offsetHeight) + "px"));
+  }
+
+  // equations: set the strip images only when a panel comes within a screen of view
+  const strips = panels.map((p) => p.querySelector(".panel-eq")).filter(Boolean);
+  function load(eq) {
+    if (eq.dataset.loaded) return;
+    const k = eq.dataset.eq, i = eq.querySelectorAll("i");
+    i[0].style.backgroundImage = `url(images/eq/pL${k}.png)`;
+    i[1].style.backgroundImage = `url(images/eq/pR${k}.png)`;
+    eq.dataset.loaded = "1";
+  }
+  {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting && eqWide.matches) { load(e.target); io.unobserve(e.target); }
+    }), { rootMargin: "100% 0px" });
+    strips.forEach((s) => io.observe(s));
+    eqWide.addEventListener("change", () => strips.forEach((s) => io.observe(s)));
+  }
+
+  let queued = false;
+  function frame() {
+    queued = false;
+    const vh = window.innerHeight;
+    const still = reduce.matches;
+    panels.forEach((p, i) => {
+      const r = p.getBoundingClientRect();
+      if (r.bottom < -50 || r.top > vh + 50) return;
+      if (!still) {
+        const prog = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+        p.style.setProperty("--eqy", (-prog * 180).toFixed(1) + "px");
+      }
+      const next = panels[i + 1];
+      if (!next || still || !desk.matches) { p.style.setProperty("--cover", 0); return; }
+      const stick = parseFloat(next.style.getPropertyValue("--stick")) || 72;
+      const t = Math.min(1, Math.max(0, 1 - (next.getBoundingClientRect().top - stick) / (vh - stick)));
+      p.style.setProperty("--cover", (t * 0.28).toFixed(3));
+    });
+  }
+  const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(frame); } };
+  measure(); frame();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => { measure(); onScroll(); });
+  window.addEventListener("load", () => { measure(); onScroll(); });
+  if ("ResizeObserver" in window) new ResizeObserver(() => { measure(); onScroll(); }).observe(document.querySelector("main"));
+})();
