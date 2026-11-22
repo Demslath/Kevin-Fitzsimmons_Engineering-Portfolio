@@ -1288,9 +1288,7 @@ main > section.section:nth-of-type(12) { background-color: #22344d; --word: #eef
 }
 .nav-burger { font-family: var(--sans); font-variant-caps: normal; font-feature-settings: normal; font-weight: 600; font-size: 1rem; letter-spacing: .01em; color: #fff; }
 .pillars article h3, .pillars article p, .brief > div dd, .readings li span { color: inherit !important; }
-.pillars article p { opacity: .9; }
 .readings strong { white-space: nowrap; }
-.readings li:nth-child(2) { background: #d6b47a; --paper: #171c16; --muted: #3a3022; color: #171c16; }
 
 
 /* ============================================================
@@ -1332,7 +1330,7 @@ main > section.section:nth-of-type(12) { --ca: #4d5f2a; --ia: #eef0ea; --cb: #d6
 .train li:nth-child(4n+3) { background: var(--cc); --ink-c: var(--ic); }
 .train li:nth-child(4n+4) { background: var(--cd); --ink-c: var(--id); }
 .train li::before { background: rgba(255,255,255,.18) !important; color: inherit !important; border-color: transparent !important; }
-.train .out { color: inherit !important; opacity: .85; }
+.train .out { color: inherit !important; }
 .readings li:nth-child(1) { background: var(--ca); --ink-c: var(--ia); }
 .readings li:nth-child(2) { background: var(--cc); --ink-c: var(--ic); }
 .readings li:nth-child(3) { background: #ff7a3d; --ink-c: #171c16; }
@@ -1392,7 +1390,29 @@ main > section.section.cta-section {
    read before the next panel slides over (about 15% of the screen height) */
 @media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
   main > section.section:not(.cta-section) {
-    padding-bottom: calc(clamp(72px, 11vw, 140px) + 15vh);
-    min-height: calc((100vh - var(--banner-h, 72px)) * 1.15);
+    padding-bottom: calc(clamp(72px, 11vw, 140px) + 25vh);
+    min-height: calc((100vh - var(--banner-h, 72px)) * 1.25);
   }
 }
+
+
+/* v21: contrast fixes (every text colour checked against its box) */
+/* labels and highlights inside solid cards use the card's own ink */
+.brief:not(.compact) > div dt { color: var(--ink-c) !important; opacity: 1; }
+:is(.brief:not(.compact) > div, .pillars article, .train li, .readings li) :is(.hl, strong, a, .link) {
+  color: inherit !important; text-decoration-color: currentColor;
+}
+:is(.brief:not(.compact) > div, .pillars article, .train li, .readings li) .hl { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; font-weight: 600; }
+/* orange text on pale panels: a deeper burnt orange that passes 4.5:1 */
+main > section.section:nth-of-type(odd) { --accent: #a8380a; }
+/* course codes on white boxes */
+main > section.section:nth-of-type(odd) .ccode { color: #4a5c22; }
+/* drawing figures: the dark mat belongs to the picture, the caption sits on the page */
+figure.fig.drawing { background: transparent !important; }
+figure.fig.drawing .ph { background: #1b1f19; }
+/* career chart: switch to the short bar labels on tablets so every label fits its bar */
+@media (max-width: 1100px) { .bar .full { display: none; } .bar .short { display: inline; } }
+.bar { overflow: hidden; white-space: nowrap; }
+/* results figures: wrap long phrases inside the tile; short values stay on one line */
+.readings strong { white-space: normal !important; overflow-wrap: break-word; text-wrap: balance; font-size: clamp(1.9rem, 2.8vw, 2.6rem) !important; line-height: 1.05; display: block; }
+.readings li { min-width: 0; overflow: hidden; }
