@@ -1,3 +1,6 @@
-# Original font files (personal-use licence): keep out of the public repo.
-# The site uses the web versions fonts/PPMori-Regular.woff2 and fonts/PPMori-SemiBold.woff2.
+# Font files are licensed for use on this site only. Keep the original
+# desktop files out of the public repository; the site uses the web
+# versions in fonts/mori-*.woff2.
+fonts/*.otf
+fonts/*.ttf
 fonts/pp-mori-font-family/
