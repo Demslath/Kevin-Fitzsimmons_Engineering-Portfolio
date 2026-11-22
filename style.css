@@ -1387,3 +1387,12 @@ main > section.section.cta-section {
   .cta-section .cta > * { grid-column: 1 !important; grid-row: auto !important; }
 }
 @media (min-width: 761px) { .slides-thumbs { margin-top: 28px !important; } }
+
+/* v20: a little more room at the end of each panel, so the last lines can be
+   read before the next panel slides over (about 15% of the screen height) */
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  main > section.section:not(.cta-section) {
+    padding-bottom: calc(clamp(72px, 11vw, 140px) + 15vh);
+    min-height: calc((100vh - var(--banner-h, 72px)) * 1.15);
+  }
+}
