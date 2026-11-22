@@ -1149,3 +1149,13 @@ main > section.section.proof { padding: clamp(36px, 5vw, 56px) 0; }
 .copy-btn:hover { background: var(--accent); color: #fff; }
 .copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .copy-btn.is-done { background: var(--accent); color: #fff; }
+
+/* v16: "you are here" in the banner */
+.nav-brand { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.nav-crumb { margin: 3px 0 0; font-family: var(--sans); font-size: 0.8rem; font-weight: 500; line-height: 1.2; color: #aeb3aa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 42vw; }
+.nav-crumb-sep { margin: 0 .45em; color: var(--accent); }
+.nav-crumb-sec { color: #eef0ea; }
+.nav-crumb.is-swap .nav-crumb-sec { animation: crumbIn .25s ease; }
+@keyframes crumbIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .nav-crumb.is-swap .nav-crumb-sec { animation: none; } }
+@media (max-width: 760px) { .nav-crumb { max-width: 58vw; font-size: 0.74rem; } }

@@ -82,3 +82,43 @@ document.querySelectorAll("[data-copy]").forEach((b) => {
     else { const t = document.createElement("textarea"); t.value = b.dataset.copy; document.body.append(t); t.select(); document.execCommand("copy"); t.remove(); done(); }
   });
 });
+
+/* Where am I: the banner names the section in view ("Experience › Course design projects")
+   (the matching dropdown link also gets aria-current for screen readers). */
+(function () {
+  const top = document.querySelector('.nav .nav-top[aria-current="page"]');
+  const crumb = document.querySelector(".nav-crumb");
+  if (!top || !crumb) return;
+  const links = Array.from(top.parentElement.querySelectorAll(".nav-menu a")).filter((a) => a.hash);
+  const marks = links
+    .map((a) => ({ a, el: document.getElementById(a.hash.slice(1)) }))
+    .filter((m) => m.el && (a => a.pathname === location.pathname || a.pathname.endsWith(location.pathname.split("/").pop() || "index.html"))(m.a));
+  if (!marks.length) return;
+  const page = top.textContent.trim();
+  let current = null;
+
+  function update() {
+    const line = (document.querySelector(".nav") || {}).offsetHeight || 72;
+    const probe = line + Math.min(160, window.innerHeight * 0.25);
+    let hit = marks[0];
+    for (const m of marks) if (m.el.getBoundingClientRect().top <= probe) hit = m;
+    // at the very bottom of the page the last section is the one being read
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) hit = marks[marks.length - 1];
+    if (hit === current) return;
+    if (current) current.a.removeAttribute("aria-current");
+    current = hit;
+    hit.a.setAttribute("aria-current", "location");
+    crumb.innerHTML = "";
+    const p = document.createElement("span"); p.className = "nav-crumb-page"; p.textContent = page;
+    const sep = document.createElement("span"); sep.className = "nav-crumb-sep"; sep.setAttribute("aria-hidden", "true"); sep.textContent = "›";
+    const sec = document.createElement("span"); sec.className = "nav-crumb-sec"; sec.textContent = hit.a.textContent;
+    crumb.append(p, sep, sec);
+    crumb.hidden = false;
+    crumb.classList.remove("is-swap"); void crumb.offsetWidth; crumb.classList.add("is-swap");
+  }
+  let queued = false;
+  const onScroll = () => { if (queued) return; queued = true; requestAnimationFrame(() => { queued = false; update(); }); };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
