@@ -1416,3 +1416,70 @@ figure.fig.drawing .ph { background: #1b1f19; }
 /* results figures: wrap long phrases inside the tile; short values stay on one line */
 .readings strong { white-space: normal !important; overflow-wrap: break-word; text-wrap: balance; font-size: clamp(1.9rem, 2.8vw, 2.6rem) !important; line-height: 1.05; display: block; }
 .readings li { min-width: 0; overflow: hidden; }
+
+
+/* ============================================================
+   v22: one colour direction, four jobs ("Cultivated Shadow"),
+   with burnt orange as the single accent.
+     anchor      deep green #15291f  banner, splash, footer, contact, dark panels
+     foundation  warm sand  #dccfba  reading panels
+     partner     sage       #56613d  every fourth panel, image blocks, cards
+     weapon      bronze     #8a6a3d  cards, image blocks
+     accent      burnt orange #b4501a  banner rule, role card, key result, buttons, highlights
+   ============================================================ */
+:root {
+  --spine: #0f2018; --field: #15291f; --raise: #1c3428; --bone: #d8cbb7; --paper: #ece6da; --muted: #b8b3a4;
+  --accent: #e98a4f; --accent-ink: #0f2018; --rule: rgba(216,203,183,.18); --grid: rgba(216,203,183,.05);
+  --teal: #b4501a; --slate: #b4501a; --teal-deep: #15291f;
+}
+main > section.section:nth-of-type(1) { background-color: #dccfba; --word: #15291f; --word-sub: #5c5848; --block: #56613d; --box-bg: #fbf8f2; --slate-bg: #fbf8f2; --moss-bg: #fbf8f2; --sand-bg: #fbf8f2; --raise: #fbf8f2; --gridline: rgba(22,35,27,.065); --paper: #16231b; --muted: #4f4c40; --rule: rgba(22,35,27,.14); --accent: #85350a; --accent-ink: #fff; color: #16231b; --box-line: #15291f; --slate-line: #15291f; --moss-line: #56613d; --sand-line: #8a6a3d; --ca: #15291f; --ia: #ece6da; --cb: #56613d; --ib: #ece6da; --cc: #8a6a3d; --ic: #fbf8f2; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(2) { background-color: #15291f; --word: #dccfba; --word-sub: #b8b3a4; --block: #8a6a3d; --box-bg: #0f2018; --slate-bg: #0f2018; --moss-bg: #0f2018; --sand-bg: #0f2018; --raise: #0f2018; --gridline: rgba(236,230,218,.05); --paper: #ece6da; --muted: #b8b3a4; --rule: rgba(236,230,218,.16); --accent: #e98a4f; --accent-ink: #0f2018; color: #ece6da; --box-line: #dccfba; --slate-line: #dccfba; --moss-line: #a9b585; --sand-line: #d2ad72; --ca: #56613d; --ia: #ece6da; --cb: #8a6a3d; --ib: #fbf8f2; --cc: #dccfba; --ic: #16231b; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(3) { background-color: #e9e1d3; --word: #5a4424; --word-sub: #5c5848; --block: #56613d; --box-bg: #fbf8f2; --slate-bg: #fbf8f2; --moss-bg: #fbf8f2; --sand-bg: #fbf8f2; --raise: #fbf8f2; --gridline: rgba(22,35,27,.065); --paper: #16231b; --muted: #4f4c40; --rule: rgba(22,35,27,.14); --accent: #85350a; --accent-ink: #fff; color: #16231b; --box-line: #15291f; --slate-line: #15291f; --moss-line: #56613d; --sand-line: #8a6a3d; --ca: #56613d; --ia: #ece6da; --cb: #15291f; --ib: #ece6da; --cc: #8a6a3d; --ic: #fbf8f2; --cd: #dccfba; --id: #16231b; }
+main > section.section:nth-of-type(4) { background-color: #56613d; --word: #ece6da; --word-sub: #d9d4c4; --block: #dccfba; --box-bg: #15291f; --slate-bg: #15291f; --moss-bg: #15291f; --sand-bg: #15291f; --raise: #15291f; --gridline: rgba(236,230,218,.06); --paper: #ece6da; --muted: #dcd7c8; --rule: rgba(236,230,218,.2); --accent: #f0dfc0; --accent-ink: #15291f; color: #ece6da; --box-line: #f0dfc0; --slate-line: #f0dfc0; --moss-line: #dfe5c8; --sand-line: #f0dfc0; --ca: #15291f; --ia: #ece6da; --cb: #8a6a3d; --ib: #fbf8f2; --cc: #dccfba; --ic: #16231b; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(5) { background-color: #dccfba; --word: #15291f; --word-sub: #5c5848; --block: #56613d; --box-bg: #fbf8f2; --slate-bg: #fbf8f2; --moss-bg: #fbf8f2; --sand-bg: #fbf8f2; --raise: #fbf8f2; --gridline: rgba(22,35,27,.065); --paper: #16231b; --muted: #4f4c40; --rule: rgba(22,35,27,.14); --accent: #85350a; --accent-ink: #fff; color: #16231b; --box-line: #15291f; --slate-line: #15291f; --moss-line: #56613d; --sand-line: #8a6a3d; --ca: #15291f; --ia: #ece6da; --cb: #56613d; --ib: #ece6da; --cc: #8a6a3d; --ic: #fbf8f2; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(6) { background-color: #15291f; --word: #dccfba; --word-sub: #b8b3a4; --block: #8a6a3d; --box-bg: #0f2018; --slate-bg: #0f2018; --moss-bg: #0f2018; --sand-bg: #0f2018; --raise: #0f2018; --gridline: rgba(236,230,218,.05); --paper: #ece6da; --muted: #b8b3a4; --rule: rgba(236,230,218,.16); --accent: #e98a4f; --accent-ink: #0f2018; color: #ece6da; --box-line: #dccfba; --slate-line: #dccfba; --moss-line: #a9b585; --sand-line: #d2ad72; --ca: #56613d; --ia: #ece6da; --cb: #8a6a3d; --ib: #fbf8f2; --cc: #dccfba; --ic: #16231b; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(7) { background-color: #e9e1d3; --word: #5a4424; --word-sub: #5c5848; --block: #56613d; --box-bg: #fbf8f2; --slate-bg: #fbf8f2; --moss-bg: #fbf8f2; --sand-bg: #fbf8f2; --raise: #fbf8f2; --gridline: rgba(22,35,27,.065); --paper: #16231b; --muted: #4f4c40; --rule: rgba(22,35,27,.14); --accent: #85350a; --accent-ink: #fff; color: #16231b; --box-line: #15291f; --slate-line: #15291f; --moss-line: #56613d; --sand-line: #8a6a3d; --ca: #56613d; --ia: #ece6da; --cb: #15291f; --ib: #ece6da; --cc: #8a6a3d; --ic: #fbf8f2; --cd: #dccfba; --id: #16231b; }
+main > section.section:nth-of-type(8) { background-color: #56613d; --word: #ece6da; --word-sub: #d9d4c4; --block: #dccfba; --box-bg: #15291f; --slate-bg: #15291f; --moss-bg: #15291f; --sand-bg: #15291f; --raise: #15291f; --gridline: rgba(236,230,218,.06); --paper: #ece6da; --muted: #dcd7c8; --rule: rgba(236,230,218,.2); --accent: #f0dfc0; --accent-ink: #15291f; color: #ece6da; --box-line: #f0dfc0; --slate-line: #f0dfc0; --moss-line: #dfe5c8; --sand-line: #f0dfc0; --ca: #15291f; --ia: #ece6da; --cb: #8a6a3d; --ib: #fbf8f2; --cc: #dccfba; --ic: #16231b; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(9) { background-color: #dccfba; --word: #15291f; --word-sub: #5c5848; --block: #56613d; --box-bg: #fbf8f2; --slate-bg: #fbf8f2; --moss-bg: #fbf8f2; --sand-bg: #fbf8f2; --raise: #fbf8f2; --gridline: rgba(22,35,27,.065); --paper: #16231b; --muted: #4f4c40; --rule: rgba(22,35,27,.14); --accent: #85350a; --accent-ink: #fff; color: #16231b; --box-line: #15291f; --slate-line: #15291f; --moss-line: #56613d; --sand-line: #8a6a3d; --ca: #15291f; --ia: #ece6da; --cb: #56613d; --ib: #ece6da; --cc: #8a6a3d; --ic: #fbf8f2; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(10) { background-color: #15291f; --word: #dccfba; --word-sub: #b8b3a4; --block: #8a6a3d; --box-bg: #0f2018; --slate-bg: #0f2018; --moss-bg: #0f2018; --sand-bg: #0f2018; --raise: #0f2018; --gridline: rgba(236,230,218,.05); --paper: #ece6da; --muted: #b8b3a4; --rule: rgba(236,230,218,.16); --accent: #e98a4f; --accent-ink: #0f2018; color: #ece6da; --box-line: #dccfba; --slate-line: #dccfba; --moss-line: #a9b585; --sand-line: #d2ad72; --ca: #56613d; --ia: #ece6da; --cb: #8a6a3d; --ib: #fbf8f2; --cc: #dccfba; --ic: #16231b; --cd: #fbf8f2; --id: #16231b; }
+main > section.section:nth-of-type(11) { background-color: #e9e1d3; --word: #5a4424; --word-sub: #5c5848; --block: #56613d; --box-bg: #fbf8f2; --slate-bg: #fbf8f2; --moss-bg: #fbf8f2; --sand-bg: #fbf8f2; --raise: #fbf8f2; --gridline: rgba(22,35,27,.065); --paper: #16231b; --muted: #4f4c40; --rule: rgba(22,35,27,.14); --accent: #85350a; --accent-ink: #fff; color: #16231b; --box-line: #15291f; --slate-line: #15291f; --moss-line: #56613d; --sand-line: #8a6a3d; --ca: #56613d; --ia: #ece6da; --cb: #15291f; --ib: #ece6da; --cc: #8a6a3d; --ic: #fbf8f2; --cd: #dccfba; --id: #16231b; }
+main > section.section:nth-of-type(12) { background-color: #56613d; --word: #ece6da; --word-sub: #d9d4c4; --block: #dccfba; --box-bg: #15291f; --slate-bg: #15291f; --moss-bg: #15291f; --sand-bg: #15291f; --raise: #15291f; --gridline: rgba(236,230,218,.06); --paper: #ece6da; --muted: #dcd7c8; --rule: rgba(236,230,218,.2); --accent: #f0dfc0; --accent-ink: #15291f; color: #ece6da; --box-line: #f0dfc0; --slate-line: #f0dfc0; --moss-line: #dfe5c8; --sand-line: #f0dfc0; --ca: #15291f; --ia: #ece6da; --cb: #8a6a3d; --ib: #fbf8f2; --cc: #dccfba; --ic: #16231b; --cd: #fbf8f2; --id: #16231b; }
+
+/* banner, splash, page headers and footer sit on the anchor green */
+.nav, .cover, .masthead, .footer { background-color: #0f2018; }
+.nav { border-bottom-color: #b4501a !important; }
+.masthead { border-bottom: 3px solid #b4501a !important; }
+.nav .nav-top[aria-current="page"], .nav .nav-top:hover { color: #e98a4f; }
+.nav .nav-top[aria-current="page"]::after { background: #e98a4f; }
+
+/* the decisive moments: burnt orange */
+.brief:not(.compact) > div:nth-child(2), .readings li:nth-child(3) { background: #b4501a !important; --ink-c: #ffffff; }
+.btn-solid { background: #b4501a; border-color: #b4501a; color: #fff; }
+.btn-solid:hover { background: #9a4515; border-color: #9a4515; color: #fff; }
+
+/* career chart in the palette */
+.bar.study { background: #56613d; color: #ece6da; }
+.bar.kitchen { background: #b4501a; color: #fff; }
+
+/* contact panel: anchor green, burnt orange only on the rule, dot and main button */
+main > section.section.cta-section {
+  background-color: #0f2018 !important; border-top-color: #b4501a !important;
+  --paper: #ece6da; --muted: #b8b3a4; --accent: #e98a4f; --gridline: rgba(236,230,218,.045); color: #ece6da;
+}
+.cta-section .cta h2 { color: #ece6da; }
+.cta-section .cta-status .dot { background: #e98a4f; box-shadow: 0 0 0 4px rgba(233,138,79,.18); }
+.cta-section .mail.link { color: #ece6da; text-decoration-color: rgba(233,138,79,.75); }
+.cta-section .copy-btn { border-color: rgba(236,230,218,.35); color: #ece6da; }
+.cta-section .copy-btn:hover, .cta-section .copy-btn.is-done { background: #b4501a; border-color: #b4501a; color: #fff; }
+.cta-section .btn { border-color: rgba(236,230,218,.35); color: #ece6da; }
+.cta-section .btn:hover { border-color: #e98a4f; color: #e98a4f; }
+.cta-section .btn-solid { background: #b4501a; border-color: #b4501a; color: #fff; }
+.cta-section .btn-solid:hover { background: #9a4515; color: #fff; }
+
+/* slideshow caption strips and drawing mats in anchor green */
+.slide figcaption { background: #0f2018; color: #ece6da; }
+figure.fig.drawing .ph { background: #0f2018; }
+
+/* captions read in the panel's own text colours */
+.fig figcaption b, figcaption.sc, .field-portrait figcaption { color: var(--paper) !important; opacity: 1; }
+.brief.compact > div:nth-child(2) dt { color: var(--accent) !important; }
